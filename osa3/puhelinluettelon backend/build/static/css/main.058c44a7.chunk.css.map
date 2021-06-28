@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,GAEI,aAAuB,CACvB,iBACJ","file":"main.058c44a7.chunk.css","sourcesContent":["h1 {\n\n    color: rgb(180, 93, 34);\n    font-style: italic;\n}"]}
