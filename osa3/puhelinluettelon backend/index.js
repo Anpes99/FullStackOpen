@@ -1,9 +1,13 @@
+
+require('dotenv').config()
 const express = require('express')
 const app = express()
+const PhoneNumber = require('./models/phoneNumber')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 var morgan = require('morgan')
+const phoneNumber = require('./models/phoneNumber')
 app.use(express.static('build'))
 
 morgan.token('postData', (req,res)=>{if (req.method==='POST'){
@@ -13,89 +17,106 @@ morgan.token('postData', (req,res)=>{if (req.method==='POST'){
 })
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :postData'))
-let phoneBook = [
-    {
-        id:1,
-        name:"Arto Hfere",
-        number: "043-443422"
-    },
-    {
-        id:2,
-        name:"Ada Lerwer",
-        number: "043-443422"
-    },
-    {
-        id:3,
-        name:"Dan Abram",
-        number: "045-32535"
-    },
-    {
-        id:4,
-        name:"Merow eerli",
-        number: "043-443422"
-    }
 
-]
 
 app.get("/api/persons",(request, response)=>{
-response.json(phoneBook)
 
-
-})
-
-app.get('/api/persons/:id',(req, res)=>{
-    id = Number(req.params.id)
-const personInfo = phoneBook.find(p => p.id ===id)
-
-if (personInfo) {
-    res.json(personInfo)
-  } else {
-    res.status(404).end()
-  }
+  PhoneNumber.find({}).then(result => {
+    console.log("phonebook:")
+    result.forEach(phoneNumber => {
+      console.log(phoneNumber.name + " " + phoneNumber.number)
+    })
+    console.log(result)
+    response.json(result)
+  })
 
 })
 
-app.delete("/api/persons/:id",(req, res)=>{
-    id = Number(req.params.id)
-    phoneBook = phoneBook.filter(p=>p.id!==id)
-    res.status(204).end()
+app.get('/api/persons/:id',(req, res,next)=>{
+   PhoneNumber.findById(req.params.id).then(phoneNumber =>{
+     res.json(phoneNumber)
+   }).catch((error)=>{next(error)}
+
+   )
+
 })
+
+app.delete("/api/persons/:id",(req, res, next)=>{
+
+  PhoneNumber.findByIdAndRemove(req.params.id)
+    .then(result => {
+      console.log(result)
+      res.status(204).end()
+    })
+      .catch(error => next(error)
+)})
 
 app.post("/api/persons",(req,res)=>{
 
     body = req.body
-console.log(body)
+
+
     if (!body.name || !body.number) {
         return res.status(400).json({ 
           error: 'name or number missing' 
         })
       }
-    if (phoneBook.find(p=>p.name===body.name)){
-        return res.status(400).json({ 
-            error: 'name already in phoneBook' 
-          })
-
-    }
-    newId=Math.floor(Math.random()*100000)
     
       const personInfo = {
-        id: newId,
         name: body.name,
         number: body.number
       }
-    phoneBook =phoneBook.concat(personInfo)
-console.log(phoneBook)
-    res.json(personInfo)
+    const phoneNumber = new PhoneNumber({
+        name: body.name,
+        number: body.number
+    })
+    phoneNumber.save().then(savedPhoneNumber =>{
+      res.json(savedPhoneNumber)
+    })
+})
+
+app.put('/api/persons/:id', (req, res, next)=>{
+  const body = req.body
+
+  const phoneNumber = {
+    name: body.name,
+    number: body.number,
+    id: body.id
+  }
+
+  PhoneNumber.findByIdAndUpdate(req.params.id, phoneNumber,{ new:true})
+    .then(updatedPhonenumber =>{
+
+      res.json(updatedPhonenumber)
+
+    }).catch(error => next(error))
+
+
+
 })
 
 app.get("/info",(req,res)=>{
-
-    res.send(`<h3>Phonebook has info for ${phoneBook.length} people</h3>
+  PhoneNumber.find({}).then(result => {
+    res.send(`<h3>Phonebook has info for ${result.length} people</h3>
     <h3>${new Date()}</h3>
-    `)
-})
+    `).catch(error => next(error))
+})})
 
-const PORT = process.env.PORT || 3001
+
+const errorHandler = (error, request, response, next) => {
+
+console.error(error.message)
+
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  }
+
+  next(error)
+}
+
+app.use(errorHandler)
+
+const PORT = process.env.PORT
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })
