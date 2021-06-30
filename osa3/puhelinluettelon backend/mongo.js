@@ -19,21 +19,21 @@ const phoneBookSchema = new mongoose.Schema({
 
 const PhoneNumber = mongoose.model('phoneNumber', phoneBookSchema)
 if (process.argv[3] && process.argv[4]){
-    const phoneNumber = new PhoneNumber({
+  const phoneNumber = new PhoneNumber({
     name: process.argv[3],
     number: process.argv[4],
-    })
+  })
 
-    phoneNumber.save().then(response => {
+  phoneNumber.save().then(() => {
     console.log(`added ${process.argv[3]} number ${process.argv[4]} to phonebook`)
     mongoose.connection.close()
-    })
+  })
 }
 
 PhoneNumber.find({}).then(result => {
-    console.log("phonebook:")
-    result.forEach(phoneNumber => {
-      console.log(phoneNumber.name + " " + phoneNumber.number)
-    })
-    mongoose.connection.close()
+  console.log('phonebook:')
+  result.forEach(phoneNumber => {
+    console.log(phoneNumber.name + ' ' + phoneNumber.number)
   })
+  mongoose.connection.close()
+})
