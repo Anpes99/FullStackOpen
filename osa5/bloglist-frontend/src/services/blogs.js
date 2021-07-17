@@ -7,9 +7,20 @@ const getAll = () => {
 }
 
 const createBlog = async (title, author, url, token) => {
-  console.log(token, "   ", title)
-  const res = await axios.post(baseUrl, {title:title, author:author, url:url}, {headers: {'Authorization': token},})
+  console.log(token, '   ', title)
+  const res = await axios.post(baseUrl, { title:title, author:author, url:url }, { headers: { 'Authorization': token }, })
   return res.data
 }
 
-export default { getAll, createBlog }
+const updateBlog = async (id, patch) => {
+  console.log(id)
+  const res = await axios.patch(`api/blogs/${id}`,patch)
+  return res.data
+}
+
+const deleteBlog = async (id, token) => {
+  const res = await axios.delete(`api/blogs/${id}`,  { headers: { 'Authorization': token } })
+  return res.data
+}
+
+export default { getAll, createBlog, updateBlog,deleteBlog }
