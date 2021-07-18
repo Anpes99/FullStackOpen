@@ -1,30 +1,20 @@
 import React, { useState } from 'react'
-import blogService from '../services/blogs'
 
 const NewBlogForm = (props) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
 
-  const handleCreateBlog = async (event) => {
-    event.preventDefault()
-    const token1 = `bearer ${props.user.token}`
-    const res= await blogService.createBlog(title,author,url,token1)
-    console.log('@@@@@response to creating a blog :: ',res)
-    props.setBlogs(props.blogs.concat(res))
-    props.setErrorMessage(`a new blog ${title} was added`)
-    setTimeout(() => {
-      props.setErrorMessage(null)
-    }, 4000)
-  }
+
 
   return(
     <> <div>
       <h2>Create a new blog</h2>
-      <form onSubmit={handleCreateBlog}>
+      <form onSubmit={(event) => props.handleCreateBlog(event, title, author, url)}>
         <div>
       title
           <input
+            id='title'
             type="text"
             value={title}
             name="Title"
@@ -34,6 +24,7 @@ const NewBlogForm = (props) => {
         <div>
       author
           <input
+            id='author'
             type="text"
             value={author}
             name="Author"
@@ -43,6 +34,7 @@ const NewBlogForm = (props) => {
         <div>
       url
           <input
+            id='url'
             type="text"
             value={url}
             name="Url"

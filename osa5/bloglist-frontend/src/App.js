@@ -37,7 +37,24 @@ const App = () => {
     )
   }, [])
 
+  const handleLike = (blog) => {
+    const id = blog.id
+    const updatedLikes=blog.likes+1
+    blogService.updateBlog(id, { likes:updatedLikes })
 
+  }
+
+  const handleCreateBlog = async (event, title,author,url) => {
+    event.preventDefault()
+    const token1 = `bearer ${user.token}`
+    const res= await blogService.createBlog(title,author,url,token1)
+    console.log('@@@@@response to creating a blog :: ',res)
+    setBlogs(blogs.concat(res))
+    setErrorMessage(`a new blog ${title} was added`)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 4000)
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -79,10 +96,10 @@ const App = () => {
       <h2>blogs</h2>
       <Notification message={errorMessage} errorTrue={errorTrue} />
       Logged in as {user.name} <button onClick={() => window.localStorage.removeItem('LoggedInBlogappUser')}>log out</button>
-      <NewBlogForm  token={user.token} setBlogs={setBlogs} setErrorMessage={setErrorMessage} blogs={blogs} user={user}/>
+      <NewBlogForm  handleCreateBlog={handleCreateBlog}/>
       {blogs.map(blog =>
 
-        <Blog key={blog.id} blog={blog} user={user} />
+        <Blog key={blog.id} blog={blog} user={user} handleLike={handleLike} />
 
 
       )}
