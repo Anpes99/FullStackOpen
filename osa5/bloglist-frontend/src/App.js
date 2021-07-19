@@ -37,11 +37,16 @@ const App = () => {
     )
   }, [])
 
-  const handleLike = (blog) => {
+  const handleLike = (e,blog) => {
+    e.preventDefault
+
     const id = blog.id
     const updatedLikes=blog.likes+1
     blogService.updateBlog(id, { likes:updatedLikes })
-
+    const index=blogs.findIndex(b => b.id === id)
+    let blogarray = blogs
+    blogarray[index].likes = updatedLikes
+    setBlogs([...blogarray])
   }
 
   const handleCreateBlog = async (event, title,author,url) => {

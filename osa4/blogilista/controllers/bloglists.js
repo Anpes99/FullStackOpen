@@ -20,6 +20,7 @@ bloglistsRouter.get('/', async (request, response) => {
 
 bloglistsRouter.post('/', async (request, response) => {
   const { body } = request;
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
   if (!request.token) { return response.status(401).send(); }
   // const token = getTokenFrom(request)
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
@@ -68,9 +69,11 @@ bloglistsRouter.delete('/:id', async (request, response) => {
 });
 
 bloglistsRouter.patch('/:id', async (request, response) => {
+  console.log(request.params)
   const blogToModify = await Blog.find({}).then((blogs) => blogs.find((blog) => blog.id === request.params.id));
+  console.log(blogToModify)
   await Blog.updateOne(blogToModify, request.body);
-  response.status(200).send();
+  response.status(200).send()
 });
 
 module.exports = bloglistsRouter;

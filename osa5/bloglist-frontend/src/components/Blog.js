@@ -20,10 +20,10 @@ const Blog = ({ blog, user, handleLike }) => {
     marginBottom: 5
   }
 
-  let userCreatedBlog =false
+  // let userCreatedBlog =false
 
-  if (blog.user){
-    if (user.id === blog.user.id){userCreatedBlog=true}}
+  // if (blog.user){
+  //   if (user.id === blog.user.id){userCreatedBlog=true}}
 
 
 
@@ -35,15 +35,15 @@ const Blog = ({ blog, user, handleLike }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div className='blog'  style={blogStyle}>
       {blog.title} {blog.author}
       <Togglable buttonLabel="view" >
         <ul key={blog._id}>
           <li>{blog.url}</li>
-          <li>likes: {blog.likes} <button onClick={() => {handleLike(blog)}} >like</button></li>
+          <li >likes: <a className="likes">{blog.likes}</a> <button className='likeButton' onClick={(e) => {handleLike(e,blog)}} >like</button></li>
           <li>  {blog.user ? blog.user.username: ''}</li>
         </ul>
-        <div style ={{ display: userCreatedBlog ? '' : 'none' }}> <button onClick={handleDelete} >delete</button></div>
+        <div style ={{ display: user.id === blog.user.id ? '' : 'none' }}> <button onClick={handleDelete} >delete</button></div>
       </Togglable>
     </div> )
 }
