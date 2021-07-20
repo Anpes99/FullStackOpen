@@ -17,11 +17,7 @@ const asObject = (anecdote) => {
   }
 }
 
-const sortAnecdotes =(state) => {
-  let arr = [...state]
-  arr=arr.sort((a,b)=>b.votes-a.votes)
-return [...arr]
-}
+
 
 export const voteAnecdote = (id) =>{
   return {type:'VOTE',id:id}
@@ -44,12 +40,12 @@ const reducer = (state = initialState, action) => {
     let index = arr.findIndex(a => a.id === action.id)
     arr[index].votes += 1 }
 
-    return sortAnecdotes([...arr])
+    return [...arr]
   }
 
   if (action.type === 'NEW_ANECDOTE'){
     if(action.data){
-    return sortAnecdotes([...state, {content:action.data.content, id:action.data.id, votes:0 }])
+    return [...state, {content:action.data.content, id:action.data.id, votes:0 }]
   }
   }
   return state
