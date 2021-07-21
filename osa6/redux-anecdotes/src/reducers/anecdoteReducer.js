@@ -1,11 +1,7 @@
-const anecdotesAtStart = [
-  'If it hurts, do it more often',
-  'Adding manpower to a late software project makes it later!',
-  'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
-  'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
-  'Premature optimization is the root of all evil.',
-  'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
-]
+import anecdoteService from '../services/anecdotes'
+
+
+
 
 const getId = () => (100000 * Math.random()).toFixed(0)
 
@@ -17,17 +13,30 @@ const asObject = (anecdote) => {
   }
 }
 
-
+export const initAnecdotes = () => {
+  return async dispatch =>{
+    const anecdotes = await anecdoteService.getAll()
+    
+    dispatch({type: 'INIT_ANECDOTES', data:anecdotes})
+  }
+}
 
 export const voteAnecdote = (id) =>{
-  return {type:'VOTE',id:id}
+  return async dispatch => {
+    await anecdoteService.voteAnecdote(id)
+    dispatch({type:'VOTE',id:id})}
 }
 
-export const createAnecdote = (content, id) =>{
-  return {type:'NEW_ANECDOTE', data:{content, id}}
+export const createAnecdote = (content) =>{
+  const id = getId()
+  return async dispatch =>{
+    await anecdoteService.createAnecdote(content, id)
+    dispatch({type:'NEW_ANECDOTE', data:{content, id }})
+  }
 }
 
-const initialState = anecdotesAtStart.map(asObject)
+let initialState = []
+
 
 const reducer = (state = initialState, action) => {
   console.log('state now: ', state)
@@ -44,9 +53,17 @@ const reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'NEW_ANECDOTE'){
+    
     if(action.data){
+      
     return [...state, {content:action.data.content, id:action.data.id, votes:0 }]
   }
+  }
+
+  if(action.type === 'INIT_ANECDOTES'){
+    if(action.data){
+      return action.data
+    }
   }
   return state
 }

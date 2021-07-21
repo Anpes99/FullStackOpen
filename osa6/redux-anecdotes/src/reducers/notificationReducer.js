@@ -1,9 +1,17 @@
 
 const initialState={notification:'Add more anecdotes..', visibleTrue:false}
 
-export const createNotification = (message) =>{
-    return {type:'NEW_NOTIFICATION', data:{notification:message}}
+export const createNotification = (message, visibleTime) =>{
+    return async dispatch => { 
+        
+        
+        
+        dispatch({type:'NEW_NOTIFICATION', data:{notification:message}})
+        setTimeout(()=>dispatch(hideNotification()), visibleTime*1000)
+    }
+        
 }
+
 
 export const hideNotification = () =>{
     return {type:'SET_VISIBLE', data:{visibleTrue:false}}
