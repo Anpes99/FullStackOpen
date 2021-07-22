@@ -1,71 +1,57 @@
-import anecdoteService from '../services/anecdotes'
+import anecdoteService from '../services/anecdotes';
 
+const getId = () => (100000 * Math.random()).toFixed(0);
 
+export const initAnecdotes = () => async (dispatch) => {
+  const anecdotes = await anecdoteService.getAll();
 
+  dispatch({ type: 'INIT_ANECDOTES', data: anecdotes });
+};
 
-const getId = () => (100000 * Math.random()).toFixed(0)
+export const voteAnecdote = (id) => {
+  console.log('here1');
+  return async (dispatch) => {
+    await anecdoteService.voteAnecdote(id);
+    dispatch({ type: 'VOTE', id });
+  };
+};
 
-const asObject = (anecdote) => {
-  return {
-    content: anecdote,
-    id: getId(),
-    votes: 0
-  }
-}
+export const createAnecdote = (content) => {
+  const id = getId();
+  return async (dispatch) => {
+    await anecdoteService.createAnecdote(content, id);
+    dispatch({ type: 'NEW_ANECDOTE', data: { content, id } });
+  };
+};
 
-export const initAnecdotes = () => {
-  return async dispatch =>{
-    const anecdotes = await anecdoteService.getAll()
-    
-    dispatch({type: 'INIT_ANECDOTES', data:anecdotes})
-  }
-}
-
-export const voteAnecdote = (id) =>{
-  return async dispatch => {
-    await anecdoteService.voteAnecdote(id)
-    dispatch({type:'VOTE',id:id})}
-}
-
-export const createAnecdote = (content) =>{
-  const id = getId()
-  return async dispatch =>{
-    await anecdoteService.createAnecdote(content, id)
-    dispatch({type:'NEW_ANECDOTE', data:{content, id }})
-  }
-}
-
-let initialState = []
-
+const initialState = [];
 
 const reducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+  console.log('state now: ', state);
+  console.log('action', action);
 
-  if (action.type === 'VOTE'){
-    let arr = [...state]
-    if (action.id)
-    {
-    let index = arr.findIndex(a => a.id === action.id)
-    arr[index].votes += 1 }
+  if (action.type === 'VOTE') {
+    const arr = [...state];
+    if (action.id) {
+      const index = arr.findIndex((a) => a.id === action.id);
+      arr[index].votes += 1;
+    }
 
-    return [...arr]
+    return [...arr];
   }
 
-  if (action.type === 'NEW_ANECDOTE'){
-    
-    if(action.data){
-      
-    return [...state, {content:action.data.content, id:action.data.id, votes:0 }]
-  }
-  }
-
-  if(action.type === 'INIT_ANECDOTES'){
-    if(action.data){
-      return action.data
+  if (action.type === 'NEW_ANECDOTE') {
+    if (action.data) {
+      return [...state, { content: action.data.content, id: action.data.id, votes: 0 }];
     }
   }
-  return state
-}
 
-export default reducer
+  if (action.type === 'INIT_ANECDOTES') {
+    if (action.data) {
+      return action.data;
+    }
+  }
+  return state;
+};
+
+export default reducer;
