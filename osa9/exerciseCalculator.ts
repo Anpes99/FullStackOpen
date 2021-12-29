@@ -23,7 +23,7 @@ const calculateExercises =( exerciseHours: Array<number>, targetHours: number): 
     return { 
         periodLength: exerciseHours.length,
         trainingDays: exerciseHours.filter(dayHours => dayHours > 0).length,
-        success: daysTargetNotMet ? false: true,
+        success: daysTargetNotMet.length !== 0 ? false: true,
         rating,
         ratingDescription,
         target: targetHours,
@@ -31,4 +31,4 @@ const calculateExercises =( exerciseHours: Array<number>, targetHours: number): 
 }
 
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1] ,2))
+console.log(calculateExercises([3, 0, 2, 4.5, 1, 3, 1] ,0.1))
