@@ -1,0 +1,5 @@
+C:\Users\user>docker run -it ubuntu bash
+root@6031aa0cee42:/# mkdir /usr/src/app
+root@6031aa0cee42:/# cd /usr/src/app
+root@6031aa0cee42:/usr/src/app# touch index.js
+root@6031aa0cee42:/usr/src/app# exit

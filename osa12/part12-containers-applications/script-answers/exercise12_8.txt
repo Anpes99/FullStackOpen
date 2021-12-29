@@ -1,0 +1,155 @@
+Script started on 2021-10-29 22:32:34+00:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="95" LINES=
+"30"]
+# mongo -u root -p example
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("730f4dcb-7bc4-42f6-8f8a-dc5c7dd1450f") }
+MongoDB server version: 5.0.3
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and
+will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2021-10-29T18:15:08.886+00:00: Using the XFS filesystem is strongly recommended with t
+he WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2021-10-29T18:15:09.906+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'
+. We suggest setting it to 'never'
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and disp
+lay
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessibl
+e to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitor
+ing()
+---
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+the_database  0.000GB
+> use the_database
+switched to db the_database
+> show collections
+todos
+> db.todos.find({})
+{ "_id" : ObjectId("617c3a2b59444218dc3541a3"), "text" : "test to update todo", "done" : true
+}
+{ "_id" : ObjectId("617c3a2b59444218dc3541a4"), "text" : "Learn about containers", "done" : fa
+lse }
+> db.todos.insertOne(
+{}db.todos
+.idb.todos.insertOne(
+34db.todos.insertOne({"})
+G-db.todos.inse
+rtdb
+.tdb.to
+dodb.t
+oddb.todos.insertOne({"_id" : Ob})
+Jddb.todos.insertOne({"_id" : Obje}
+)-db.todos.insertOne({"_
+iddb.todos.insertO
+nedb.todos.insertOne({"_id" : ObjectId(})
+Gddb.todos.insertOne({"_id" : Objec
+tIdb.todos.i
+nsdb.todos.insertOne({"_id" : ObjectId("")})
+1Gdb.todos.insertOne({"_id" : ObjectI
+d(db.todos.insertOne({"_
+iddb.to
+dodb.todos.insertOne({"_id" : ObjectId("617c
+3adb.todos.insertOne(
+{"db.todos.insertOne({"_id" : ObjectId("617c3a2b59")})
+51db.todos.insertOne({"_id
+" db.todos.insertOne({"_id" : ObjectId("617c3a2b59444")})
+--db.todos.insertOne({
+"_db.todos.insertOne({"_id" : ObjectId("617c3a2b59
+44db.todo
+s.db.todos.insertOne({"_id" : Obje
+ctdb.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc
+35db.todo
+s.db.todos.insertOne({"_id" :
+Obdb.todos.insertOne({"_id" : ObjectId("617c3a2b59
+44db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc35
+41db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5")})
+7Gdb
+.tdb.todos.i
+nsdb.todos.insertOn
+e(db.todos.insertOne({"_i
+d"db.todos.insertOne({"_id" : ObjectId("
+61db.todos.insertOne({"_id" : ObjectId("617c3a2b594442
+18db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"),
+ "db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text"})
+G-db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text"})
+3Gdb.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" })
+Gdb.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" :})
+Gdb.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : })
+3Gdb.t
+oddb.
+tod
+b.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : ""})
+dbdb.t
+oddb.todos.
+indb.todos.inse
+rtdb.todos.insertO
+nedb.todos.insertOne
+({db.todos.insertOne(
+{"db.todos.insertOne(
+{"db.todos.insertOne
+({db.todos.insertO
+nedb.todos.inse
+rtdb.todos.
+indb.t
+odos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : "Increase the"})
+db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : "Increase the "})
+--db.todos.insertOne({"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : "Increase
+thdb.todos.insert
+Jddb.todos.insertOne(
+dbdb.todos.insertOne({
+"_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : "Increase the number of tools "})
+A-db.t
+oddb.todo
+s.db.to
+dodb.todos.insertOne({"_id" : Ob
+jectId("617c3a2b59444218dc3541a5"), "text" : "Increase the number of tools in my tool"})
+A-db.todos.insert
+Ondb.todos.insertOne({"_id" : Object
+--
+dbdb.todos.insertOne({"_id" : ObjectId
+3Gdb.todos.insertOne({"_id" : Obj
+ecdb.todos.insertOne({"_
+iddb.todos.insertOne({"_id" :
+Obdb.todos.insertOne({"_id" : Obj
+ecdb.todos.insertOne({"
+_idb.todos.
+indb.todos.insertOne({"_id" : ObjectI
+d(db.todos.insertOn
+e(db.todos.insertOne({"_id" : ObjectId("61
+7cdb.todos.insertO
+nedb.todos.insertOne({"_id" : ObjectId("617c3a2
+b59444218dc3541a5"), "text" : "Increase the number of tools in my toolbelt", "done" : false})
+46G
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("617c3a2b59444218dc3541a5")
+}
+> db.todos.find({})
+3Gdb.todos.find({})
+{ "_id" : ObjectId("617c3a2b59444218dc3541a3"), "text" : "test to update todo", "done" : true
+}
+{ "_id" : ObjectId("617c3a2b59444218dc3541a4"), "text" : "Learn about containers", "done" : fa
+lse }
+{ "_id" : ObjectId("617c3a2b59444218dc3541a5"), "text" : "Increase the number of tools in my t
+oolbelt", "done" : false }
+> exit

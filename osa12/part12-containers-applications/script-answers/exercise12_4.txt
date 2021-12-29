@@ -1,0 +1,67 @@
+Script started on 2021-10-24 22:05:24+03:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="71" LINES="30"]
+# apt-get -y instll^H ^H^H ^Hall curl
+^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 6%^M^MReading package lists... 6%^M^MReading package lists... 7%^M^MReading package lists.>^MBuilding dependency tree... 0%^M^MBuilding dependency tree... 0%^M^MBuilding dependency tree... 50%^M^MBuilding dependency tree... 50%^M^MBuilding dependency tree... 66%^M^MBuilding dependency tree       ^M
+^MReading state information... 0%^M^MReading state information... 1%^M^MReading state information... Done^M
+curl is already the newest version (7.68.0-1ubuntu2.7).
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libicu66 libuv1 nodejs-doc tzdata
+Use 'apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+# curl -sL https://deb.nodesource.com/setup_16.x | bash
+
+## Installing the NodeSource Node.js 16.x repo...
+
+
+## Populating apt-get cache...
+
++ apt-get update
+^M0% [Working]^M            ^MHit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+^M0% [Waiting for headers] [Waiting for headers]^M                                              ^MHit:2 https://deb.nodesource.com/node_16.x focal InRelease
+^M0% [Waiting for headers] [Waiting for headers]^M                                              ^MHit:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+^M                                              ^MHit:4 http://security.ubuntu.com/ubuntu focal-security InRelease
+^M                                              ^M0% [Working]^M            ^MHit:5 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+^M0% [Working]^M0% [Working]^M0% [Working]^M0% [Working]^M0% [Working]^M20% [Working]^M             ^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading packa>
+## Confirming "focal" is supported...
+
++ curl -sLf -o /dev/null 'https://deb.nodesource.com/node_16.x/dists/focal/Release'
+
+## Adding the NodeSource signing key to your keyring...
+
++ curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null
+
+## Creating apt sources list file for the NodeSource Node.js 16.x repo...
+
++ echo 'deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x focal main' > /etc/apt/sources.list.d/nodesource.list
++ echo 'deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+
+## Running `apt-get update` for you...
+
++ apt-get update
+^M0% [Working]^M            ^MHit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+^M0% [Waiting for headers] [Waiting for headers]^M                                              ^MHit:2 https://deb.nodesource.com/node_16.x focal InRelease
+^M0% [Waiting for headers] [Waiting for headers]^M                                              ^MHit:3 http://security.ubuntu.com/ubuntu focal-security InRelease
+^M                                              ^M0% [Waiting for headers]^M                        ^MHit:4 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+^M                        ^M0% [Working]^M            ^MHit:5 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+^M0% [Working]^M0% [Working]^M0% [Working]^M0% [Working]^M0% [Working]^M20% [Working]^M             ^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading packa>
+## Run `^[[1msudo apt-get install -y nodejs^[(B^[[m` to install Node.js 16.x and npm
+## You may also need development tools to build native addons:
+     sudo apt-get install gcc g++ make
+## To install the Yarn package manager, run:
+     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+     echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+     sudo apt-get update && sudo apt-get install yarn
+
+
+# apt install -y nodejs
+^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 0%^M^MReading package lists... 6%^M^MReading package lists... 6%^M^MReading package lists... 7%^M^MReading package lists.>^MBuilding dependency tree... 0%^M^MBuilding dependency tree... 0%^M^MBuilding dependency tree... 50%^M^MBuilding dependency tree... 50%^M^MBuilding dependency tree... 59%^M^MBuilding dependency tree       ^M
+^MReading state information... 0%^M^MReading state information... 1%^M^MReading state information... Done^M
+nodejs is already the newest version (16.12.0-deb-1nodesource1).
+The following packages were automatically installed and are no longer required:
+  libc-ares2 libicu66 libuv1 nodejs-doc tzdata
+Use 'apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+# node /ust^H ^Hr/src/app/index.js
+Hello World
+# exir^H ^Ht
+
+Script done on 2021-10-24 22:07:17+03:00 [COMMAND_EXIT_CODE="0"]
